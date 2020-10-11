@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 import Header from "../components/Header";
 
 const weatherKey = `67498b5b8ab3f81914de08af4d299a7a`;
 
 function Home() {
+  const history = useHistory();
   const [weatherData, setWeatherData] = useState(null);
-  const [city, setCity] = useState("Tokyo");
+  const [city, setCity] = useState("Chicago");
 
   useEffect(() => {
     axios
@@ -22,6 +24,15 @@ function Home() {
       });
   }, [city]); //[] for when to call function, only runs once if empty
   //ex: [weatherData] would call everytime weatherData changes
+
+  useEffect(() => {
+    const searchParams = history.location.search;
+    const urlParams = new URLSearchParams(searchParams);
+    const city = urlParams.get("city");
+    if (city) {
+      setCity(city);
+    }
+  }, [history]);
 
   const {
     cloudiness,
