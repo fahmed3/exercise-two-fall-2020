@@ -1,5 +1,6 @@
 .Header {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   margin: 0 auto;
@@ -16,7 +17,7 @@
 }
 
 .Header nav a:hover {
-  color: magenta;
+  color: darkcyan;
 }
 
 /* Home */
@@ -28,6 +29,7 @@
 
 .WeatherInfo {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
 }
 
@@ -36,10 +38,13 @@
   flex-basis: 30%;
   padding: 30px;
   text-align: center;
+  text-shadow: 1px 0 white;
 }
 
 .WeatherInfo_Image {
   font-size: 150px;
+  border: 2px solid white;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .WeatherInfo_Type {
@@ -50,14 +55,6 @@
 
 .WeatherInfo_Temp {
   font-size: 84px;
-  margin: 0;
-}
-
-.Label {
-  font-size: 16px;
-  text-transform: uppercase;
-  font-size: 16px;
-  letter-spacing: 2px;
   margin: 0;
 }
 
@@ -87,5 +84,45 @@
 }
 
 .Home h2 span {
-  color: magenta;
+  color: darkcyan;
+}
+
+.Label {
+  font-size: 16px;
+  text-transform: uppercase;
+  font-size: 16px;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+@media screen and (max-width: 640px) {
+  .Home h2 {
+    margin-top: 5px;
+    text-align: center;
+  }
+
+  .Header {
+    flex-direction: column;
+  }
+
+  .Header nav {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .Header nav a {
+    font-size: 14px;
+    padding: 2px;
+  }
+
+  .WeatherInfo {
+    flex-direction: column;
+  }
+
+  .WeatherInfo_Extra {
+    border-left: 2px solid black;
+    border-top: none;
+    flex-direction: column;
+  }
 }

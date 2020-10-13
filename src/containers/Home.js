@@ -15,7 +15,7 @@ function Home() {
   useEffect(() => {
     axios
       .get(
-        `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${weatherKey}`
+        `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&APPID=${weatherKey}`
       )
       .then(function (response) {
         setWeatherData(response.data);
@@ -54,11 +54,11 @@ function Home() {
 
     if (weatherData) {
       cloudiness = `${weatherData.clouds.all}%`;
-      currentTemp = `${weatherData.main.temp}`;
-      highTemp = `${weatherData.main.temp_max}`;
-      lowTemp = `${weatherData.main.temp_min}`;
+      currentTemp = `${Math.round(weatherData.main.temp)}°`;
+      highTemp = `${Math.round(weatherData.main.temp_max)}°`;
+      lowTemp = `${Math.round(weatherData.main.temp_min)}°`;
       weatherType = `${weatherData.weather[0].description}`;
-      windSpeed = `${weatherData.wind.speed} km/h`;
+      windSpeed = `${weatherData.wind.speed} mph`;
       humidity = `${weatherData.main.humidity}%`;
     }
 
@@ -81,7 +81,12 @@ function Home() {
           Weather in <span>{city}</span>{" "}
         </h2>
         <div className="WeatherInfo">
-          <div className="WeatherInfo_Basic">
+          <div
+            className="WeatherInfo_Basic"
+            style={{
+              backgroundImage: `linear-gradient(to top, white, rgba(0,0,0,${cloudiness}) 98%)`,
+            }}
+          >
             <div className="WeatherInfo_Image">
               <WeatherImage weatherType={weatherType} />
             </div>
@@ -112,12 +117,3 @@ function Home() {
 }
 
 export default Home;
-
-//HTTP request directly in browser
-/*
-<script>
-  document.addEventListener("DOMContenLoaded", function() {
-    axios.get('/')then().catch();
-  })
-</script>
-*/
