@@ -1,6 +1,6 @@
 # Exercise Two: Weather App
 
-Notes for weather app
+Weather app to display information about the weather in different cities. Currently includes Seoul, Toronto, Chicago, and Shanghai.
 
 # Built with React
 
